@@ -1,63 +1,121 @@
-angular.module( 'sample', [
-  'auth0',
-  'ngRoute',
-  'sample.home',
-  'sample.login',
-  'angular-storage',
-  'angular-jwt'
-])
-.config( function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
-  jwtInterceptorProvider) {
-  $routeProvider
-    .when( '/', {
-      controller: 'HomeCtrl',
-      templateUrl: 'home/home.html',
-      pageTitle: 'Homepage',
-      requiresLogin: true
-    })
-    .when( '/login', {
-      controller: 'LoginCtrl',
-      templateUrl: 'login/login.html',
-      pageTitle: 'Login'
+angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer'])
+  .config(function($stateProvider, $urlRouterProvider, $authProvider) {
+
+    /**
+     * Helper auth functions
+     */
+    var skipIfLoggedIn = function($q, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.reject();
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    };
+
+    var loginRequired = function($q, $location, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/login');
+      }
+      return deferred.promise;
+    };
+
+    /**
+     * App routes
+     */
+    $stateProvider
+      .state('home', {
+        url: '/',
+        controller: 'HomeCtrl',
+        templateUrl: 'partials/home.html'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'partials/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'partials/signup.html',
+        controller: 'SignupCtrl',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('logout', {
+        url: '/logout',
+        template: null,
+        controller: 'LogoutCtrl'
+      })
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'partials/profile.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          loginRequired: loginRequired
+        }
+      });
+    $urlRouterProvider.otherwise('/');
+
+    /**
+     *  Satellizer config
+     */
+    $authProvider.facebook({
+      clientId: '603122136500203'
     });
 
+    $authProvider.google({
+      clientId: 'YOUR_GOOGLE_CLIENT_ID'
+    });
 
-  authProvider.init({
-    domain: AUTH0_DOMAIN,
-    clientID: AUTH0_CLIENT_ID,
-    loginUrl: '/login'
+    $authProvider.github({
+      clientId: 'YOUR_GITHUB_CLIENT_ID'
+    });
+
+    $authProvider.linkedin({
+      clientId: 'YOUR_LINKEDIN_CLIENT_ID'
+    });
+
+    $authProvider.instagram({
+      clientId: 'YOUR_INSTAGRAM_CLIENT_ID'
+    });
+
+    $authProvider.yahoo({
+      clientId: 'YOUR_YAHOO_CLIENT_ID'
+    });
+
+    $authProvider.live({
+      clientId: 'YOUR_MICROSOFT_CLIENT_ID'
+    });
+
+    $authProvider.twitch({
+      clientId: 'YOUR_TWITCH_CLIENT_ID'
+    });
+
+    $authProvider.bitbucket({
+      clientId: 'YOUR_BITBUCKET_CLIENT_ID'
+    });
+
+    $authProvider.spotify({
+      clientId: 'YOUR_SPOTIFY_CLIENT_ID'
+    });
+
+    $authProvider.twitter({
+      url: '/auth/twitter'
+    });
+
+    $authProvider.oauth2({
+      name: 'foursquare',
+      url: '/auth/foursquare',
+      clientId: 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K',
+      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate'
+    });
   });
-
-  jwtInterceptorProvider.tokenGetter = function(store) {
-    return store.get('token');
-  };
-
-  // Add a simple interceptor that will fetch all requests and add the jwt token to its authorization header.
-  // NOTE: in case you are calling APIs which expect a token signed with a different secret, you might
-  // want to check the delegation-token example
-  $httpProvider.interceptors.push('jwtInterceptor');
-}).run(function($rootScope, auth, store, jwtHelper, $location) {
-  $rootScope.$on('$locationChangeStart', function() {
-    if (!auth.isAuthenticated) {
-      var token = store.get('token');
-      if (token) {
-        if (!jwtHelper.isTokenExpired(token)) {
-          auth.authenticate(store.get('profile'), token);
-        } else {
-          $location.path('/login');
-        }
-      }
-    }
-
-  });
-})
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$routeChangeSuccess', function(e, nextRoute){
-    if ( nextRoute.$$route && angular.isDefined( nextRoute.$$route.pageTitle ) ) {
-      $scope.pageTitle = nextRoute.$$route.pageTitle + ' | Auth0 Sample' ;
-    }
-  });
-})
-
-;
-
