@@ -29,12 +29,12 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
      */
     $stateProvider
       .state('home', {
-        url: '/',
+        url: 'angular-example/',
         controller: 'HomeCtrl',
         templateUrl: 'partials/home.html'
       })
       .state('login', {
-        url: '/login',
+        url: 'angular-example/login',
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
         resolve: {
@@ -42,7 +42,7 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
         }
       })
       .state('signup', {
-        url: '/signup',
+        url: 'angular-example/signup',
         templateUrl: 'partials/signup.html',
         controller: 'SignupCtrl',
         resolve: {
@@ -50,12 +50,12 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
         }
       })
       .state('logout', {
-        url: '/logout',
+        url: 'angular-example/logout',
         template: null,
         controller: 'LogoutCtrl'
       })
       .state('profile', {
-        url: '/profile',
+        url: 'angular-example/profile',
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl',
         resolve: {
