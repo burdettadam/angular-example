@@ -116,7 +116,7 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
       url: '/oauth/authorize/newuser',
       clientId: 'CDEAACCE-85F9-11E6-884F-74B0E71C24E1',
       redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
-      authorizationEndpoint: 'https://kibdev.kobj.net/oauth/authorize/newuser?response_type=code&'
+      authorizationEndpoint: 'https://kibdev.kobj.net/oauth/authorize/newuser'
     });
 
     $authProvider.oauth2({
