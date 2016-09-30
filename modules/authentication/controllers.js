@@ -10,6 +10,7 @@ app.controller('LoginController',
       
     angular.element(document).ready(function () {
         document.getElementById('msg').innerHTML = 'Hello';
+        });
 /*
         $scope.login = function () {
             $scope.dataLoading = true;
