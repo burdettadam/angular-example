@@ -18,7 +18,7 @@ angular.module('BasicHttpAuthExample', [
             controller: 'LoginController',
             templateUrl: 'modules/authentication/views/login.html'
         })
-        .when('code', {
+        .when('/code.html', {
             controller: 'CodeController',
             templateUrl: 'modules/authentication/views/code.html'
         })
