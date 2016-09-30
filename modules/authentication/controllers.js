@@ -26,7 +26,8 @@ app.controller('LoginController',
 app.controller('CodeController',
     ['$scope', '$rootScope', '$location', 'AuthenticationService',
     function ($scope, $rootScope, $location, AuthenticationService) {
-
+    console.log("code.html");            
+/*
     wrangler.clientKey = "CDEAACCE-85F9-11E6-884F-74B0E71C24E1&state=1239234";
     wrangler.anonECI = "85255500-0b65-0130-243c-00163ebcdddd";
     wrangler.callbackURL = "https://burdettadam.github.io/angular-example/#/code";
@@ -56,4 +57,5 @@ app.controller('CodeController',
           window.location = "https://kibdev.kobj.net/login";
         }
         );
+        */
     }]);
