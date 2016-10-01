@@ -24,7 +24,7 @@ app.controller('LoginController',
         console.log("document ready");
         wrangler.retrieveSession();
         // only put static stuff here...
-        plant_authorize_button();
+        AuthenticationService.plant_authorize_button();
 
     }]);
 
