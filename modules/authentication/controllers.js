@@ -1,12 +1,6 @@
 ﻿'use strict';
 
-    wrangler.clientKey = "CDEAACCE-85F9-11E6-884F-74B0E71C24E1&state=1239234";
-    wrangler.anonECI = "85255500-0b65-0130-243c-00163ebcdddd";
-    wrangler.callbackURL = "https://burdettadam.github.io/angular-example/code";
-    wrangler.host = "kibdev.kobj.net"; // change to cs.kobj.net when in production
-    wrangler.login_server = "kibdev.kobj.net"; // change to accounts.kobj.net when in production
-    wrangler.eventPath = 'sky/event';
-    wrangler.functionPath ='sky/cloud';
+
 
 function plant_authorize_button()
     {
@@ -33,7 +27,7 @@ function plant_authorize_button()
 var app = angular.module('Authentication');
 
 app.controller('LoginController',
-    ['$scope', '$rootScope', '$location', 'AuthenticationService',
+    ['$scope', '$rootScope', '$location', 'AuthenticationService','$window',
     function ($scope, $rootScope, $location, AuthenticationService) {
         // reset login status
         AuthenticationService.ClearCredentials();
