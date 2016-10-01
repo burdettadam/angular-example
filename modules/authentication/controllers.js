@@ -1,17 +1,13 @@
 ﻿'use strict';
 
 
-
-function 
-
-
 var app = angular.module('Authentication');
 
 app.controller('LoginController',
     ['$scope', '$rootScope', '$location', 'AuthenticationService','$window',
     function ($scope, $rootScope, $location, AuthenticationService,$window) {
         // reset login status
-        AuthenticationService.ClearCredentials();
+        /*AuthenticationService.ClearCredentials();
 
         $scope.login = function () {
             $scope.dataLoading = true;
@@ -24,7 +20,7 @@ app.controller('LoginController',
                     $scope.dataLoading = false;
                 }
             });
-        };
+        };*/
         console.log("document ready");
         wrangler.retrieveSession();
         // only put static stuff here...
