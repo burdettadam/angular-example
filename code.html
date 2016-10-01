@@ -52,18 +52,11 @@
   <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
   <!--getting access for devtools-api-->
-  <script src="https://rawgit.com/burdettadam/wrangler/master/js/wrangler.js"></script>
 
 
 
  <script>
-    wrangler.clientKey = "CDEAACCE-85F9-11E6-884F-74B0E71C24E1&state=1239234";
-    wrangler.anonECI = "85255500-0b65-0130-243c-00163ebcdddd";
-    wrangler.callbackURL = "https://burdettadam.github.io/angular-example/code";
-    wrangler.host = "kibdev.kobj.net"; // change to cs.kobj.net when in production
-    wrangler.login_server = "kibdev.kobj.net"; // change to accounts.kobj.net when in production
-    wrangler.eventPath = 'sky/event';
-    wrangler.functionPath ='sky/cloud';
+
   $("document").ready(function() {
 
     wrangler.getOAuthAccessToken(wrangler.retrieveOAuthCode(), function(oauth_payload)

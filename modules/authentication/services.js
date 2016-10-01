@@ -10,7 +10,6 @@ angular.module('Authentication')
         service.Login = function (username, password, callback) {
 
             /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
             $timeout(function () {
                 var response = { success: username === 'test' && password === 'test' };
                 if (!response.success) {
@@ -18,6 +17,7 @@ angular.module('Authentication')
                 }
                 callback(response);
             }, 1000);
+             ----------------------------------------------*/
 
 
             /* Use this for real authentication
