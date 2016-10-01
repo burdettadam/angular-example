@@ -9,7 +9,7 @@ var app = angular.module('Authentication');
 
 app.controller('LoginController',
     ['$scope', '$rootScope', '$location', 'AuthenticationService','$window',
-    function ($scope, $rootScope, $location, AuthenticationService) {
+    function ($scope, $rootScope, $location, AuthenticationService,$window) {
         // reset login status
         AuthenticationService.ClearCredentials();
 
@@ -34,8 +34,8 @@ app.controller('LoginController',
 
 
 app.controller('CodeController',
-    ['$scope', '$rootScope', '$location', 'AuthenticationService',
-    function ($scope, $rootScope, $location, AuthenticationService) {
+    ['$scope', '$rootScope', '$location', 'AuthenticationService','$window',
+    function ($scope, $rootScope, $location, AuthenticationService,$window) {
 
     wrangler.getOAuthAccessToken(wrangler.retrieveOAuthCode(), function(oauth_payload)
     {
