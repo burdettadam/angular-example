@@ -6,28 +6,6 @@ angular.module('Authentication')
     ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout','$window',
     function (Base64, $http, $cookieStore, $rootScope, $timeout, $window) {
         var service = {};
-
-        service.Login = function (username, password, callback) {
-
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-            $timeout(function () {
-                var response = { success: username === 'test' && password === 'test' };
-                if (!response.success) {
-                    response.message = 'Username or password is incorrect';
-                }
-                callback(response);
-            }, 1000);
-             ----------------------------------------------*/
-
-
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
-
-        };
         service.plant_authorize_button = function()
         {
             //Oauth through kynetx
@@ -48,32 +26,11 @@ angular.module('Authentication')
                 }); // this will go to the authorization page.
             });
         };
-
-        service.SetCredentials = function (username, password) {
-            var authdata = Base64.encode(username + ':' + password);
-
-            $rootScope.globals = {
-                currentUser: {
-                    username: username,
-                    authdata: authdata
-                }
-            };
-
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
-        };
-
-        service.ClearCredentials = function () {
-            $rootScope.globals = {};
-            $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic ';
-        };
-
         return service;
     }])
 
 .factory('Base64', function () {
-    /* jshint ignore:start */
+    /* jshint ignore:start 
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
@@ -155,5 +112,5 @@ angular.module('Authentication')
         }
     };
 
-    /* jshint ignore:end */
+     jshint ignore:end */
 });
