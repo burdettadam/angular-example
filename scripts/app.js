@@ -15,16 +15,16 @@ angular.module('BasicHttpAuthExample', [
 
     $routeProvider
         .when('/login', {
-            controller: 'LoginController',
+            controller: 'LoginController', // authentication module
             templateUrl: 'modules/authentication/views/login.html'
         })
         .when('/code.html', {
-            controller: 'CodeController',
+            controller: 'CodeController',// authentication module
             templateUrl: 'modules/authentication/views/code.html'
         })
 
         .when('/', {
-            controller: 'HomeController',
+            controller: 'HomeController',// home module
             templateUrl: 'modules/home/views/home.html'
         })
 
