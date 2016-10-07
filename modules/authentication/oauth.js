@@ -4,7 +4,7 @@
     window.wrangler = {};
 
     // ------------------------------------------------------------------------
-    wrangler.clientKey = "CDEAACCE-85F9-11E6-884F-74B0E71C24E1&state=1239234";
+    wrangler.clientKey = "CDEAACCE-85F9-11E6-884F-74B0E71C24E1";
     wrangler.anonECI = "85255500-0b65-0130-243c-00163ebcdddd";
     wrangler.callbackURL = "https://burdettadam.github.io/angular-example/code.html";
     wrangler.host = "kibdev.kobj.net"; // change to cs.kobj.net when in production
