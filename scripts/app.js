@@ -1,5 +1,9 @@
 ﻿'use strict';
 
+// declare modules
+angular.module('Authentication', []);
+angular.module('Home', []);
+
 angular.module('BasicHttpAuthExample', [
     'Authentication',
     'Home',
